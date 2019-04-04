@@ -16,37 +16,43 @@ class App extends Component {
     super(props);
     this.state = {
       tab: "Welcome",
-      users: []
+      users: [],
+      id: 0,
+      curUserId: 0
     };
     this.changeTab = this.changeTab.bind(this);
-    this.addUsers = this.addUsers.bind(this);
+    this.addUser = this.addUser.bind(this);
   }
 
   changeTab(tab) {
+    console.log("Value of tab: ", tab)
     this.setState({ tab: tab });
   }
 
-  addUsers() {
+  addUser(name, alias) {
     // console.log(this.state.name, this.state.alias)
-    axios.post('/api/users', {name: this.state.name, alias: this.state.alias}).
-    then (res => {this.setState({users: res.data})});
+    axios.post('/api/users', {id: this.state.id, name: name, alias: alias, balance: 500}).
+      then (res => {this.setState({users: res.data})});
     this.changeTab("Spin");
+    this.setState({curUserId: this.state.id});
+    this.setState({id: this.state.id+1});
+    console.log("The id is: ", this.state.id)
  }
 
-
   render() {
+    console.log(this.state.curUserId)
     return (
       <div className="App">
+         {/* <article><Signup changeTab = {this.changeTab} addUser = {this.addUser}/></article> */}
       {this.state.tab === "Welcome" ? (
       <article>< Welcome changeTab = {this.changeTab} /></article>) :
       this.state.tab === "Signup" ? (
-      <article><Signup changeTab = {this.changeTab} addUsers = {this.addUsers}/></article>) :
+      <article><Signup changeTab = {this.changeTab} addUser = {this.addUser}/></article>) :
       this.state.tab === "Signin" ? (
       <article><Signin changeTab = {this.changeTab} /></article>) :  
       this.state.tab === "Spin" ? (
-      (<article><Spin changeTab = {this.changeTab} /></article>)) :
-      (
-      <article><Welcome changeTab = {this.changeTab} /></article>)
+      <article><Spin changeTab = {this.changeTab} user = {this.state.users[this.state.curUserId]}/></article>) :
+      ( <article><Welcome changeTab = {this.changeTab} /></article>)
       }   
       <Footer />
       </div>

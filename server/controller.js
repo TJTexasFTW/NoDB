@@ -3,8 +3,8 @@ let users = [];
 module.exports = {
     create: (req, res) => {
         console.log("ReqBody: ", req.body)
-         const { name, alias } = req.body;
-         users.push({ name, alias });
+         const { id, name, alias, balance } = req.body;
+         users.push({ id, name, alias, balance });
         //  id++;
          res.status(200).send(users);
        },

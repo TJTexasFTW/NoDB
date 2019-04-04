@@ -9,7 +9,6 @@ export default class Signup extends Component {
       this.state = {
          name: "",
          alias: ""
-
       };
       
    }
@@ -43,7 +42,7 @@ export default class Signup extends Component {
         {/* <div>Starting Balance: 500 Credits</div> */}
 
         {/* <button onClick={() => this.props.changeTab("Spin")}>Start Playing</button> */}
-        <button onClick={this.props.addUsers}>Start Playing</button>
+        <button onClick={() => this.props.addUser(this.state.name, this.state.alias)}>Start Playing</button>
 
      </div>   
     )}
