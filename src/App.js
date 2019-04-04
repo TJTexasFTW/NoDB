@@ -8,20 +8,31 @@ import Signup from './components/signup';
 import Signin from './components/signin';
 import Spin from './components/spin';
 // import Javascriptslots from './components/javascriptslots'
+import axios from 'axios';
 
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      tab: "Welcome"
+      tab: "Welcome",
+      users: []
     };
     this.changeTab = this.changeTab.bind(this);
+    this.addUsers = this.addUsers.bind(this);
   }
 
   changeTab(tab) {
     this.setState({ tab: tab });
   }
+
+  addUsers() {
+    // console.log(this.state.name, this.state.alias)
+    axios.post('/api/users', {name: this.state.name, alias: this.state.alias}).
+    then (res => {this.setState({users: res.data})});
+    this.changeTab("Spin");
+ }
+
 
   render() {
     return (
@@ -29,7 +40,7 @@ class App extends Component {
       {this.state.tab === "Welcome" ? (
       <article>< Welcome changeTab = {this.changeTab} /></article>) :
       this.state.tab === "Signup" ? (
-      <article><Signup changeTab = {this.changeTab} /></article>) :
+      <article><Signup changeTab = {this.changeTab} addUsers = {this.addUsers}/></article>) :
       this.state.tab === "Signin" ? (
       <article><Signin changeTab = {this.changeTab} /></article>) :  
       this.state.tab === "Spin" ? (

@@ -1,9 +1,17 @@
 import React, { Component } from "react";
 import Javascriptslots from './javascriptslots'
 import Slots from './slots'
-
+import Signup from './signup';
 
 export default class Spin extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      balance: 500
+    };
+    
+  }
 
     render() {
 
@@ -11,8 +19,6 @@ export default class Spin extends Component {
      <div>
         <h2>LET'S PLAY</h2>
         <Javascriptslots />
-        <h3>Alias to Go Here</h3>
-        <h2>CURRENT CREDITS: ######</h2>
         <Slots />
         <h2>CREDITS WON: #####</h2>
          <div className="winners">
@@ -20,7 +26,7 @@ export default class Spin extends Component {
          <p>3 Matching Items: 50 credits</p>
          <p>3 Bonus Items: 100 credits</p>
          </div>
-
+         <h4>CURRENT CREDITS: {this.state.balance}</h4>
       <p className="spinCost">Each Spin: 10 credits</p>
       
       <div className="spinButtons">

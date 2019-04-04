@@ -11,8 +11,10 @@ export default class Signin extends Component {
      <div>
         <h2>SIGN IN</h2>
         <Javascriptslots />
-            <div><label>Alias:</label>
-            <input/></div>
+            <div>
+                <label>Alias:</label>
+                <input/>
+            </div>
          <button onClick={() => this.props.changeTab("Spin")}>Start Playing</button>
   
 
