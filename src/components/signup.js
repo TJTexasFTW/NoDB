@@ -1,8 +1,10 @@
-import React from 'react';
-import Slots from './slots'
+import React, { Component } from "react";
+// import Slots from './slots'
 import Javascriptslots from './javascriptslots'
 
-export default function Signup () {
+export default class Signup extends Component {
+
+   render() {
 
     return (
      <div>
@@ -12,12 +14,12 @@ export default function Signup () {
             <input/></div> 
             <div><label>Alias:</label>
             <input/></div>
-        <div><a>Starting Balance: 500 Credits</a></div>
+        <div>Starting Balance: 500 Credits</div>
 
-        <button>Start Playing</button>
+        <button onClick={() => this.props.changeTab("Spin")}>Start Playing</button>
   
 
      </div>   
     )}
 
-
+    }

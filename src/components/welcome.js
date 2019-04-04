@@ -1,19 +1,24 @@
-import React from 'react';
+import React, { Component } from "react";
 import Javascriptslots from './javascriptslots'
 import Slots from './slots'
 
-export default function Welcome () {
+
+export default class Welcome extends Component {
+
+   render() {
 
     return (
      <div>
-        <h2>WELCOME TO</h2>
+        {this.props.tab !== Welcome ? (
         <h2>VISIT AGAIN SOON</h2>
+        ) : (
+        <h2>WELCOME</h2>)}
         <Javascriptslots />
         <Slots />
-        <button>Sign Up</button>
-        <button>Sign In</button>
+        <button onClick={() => this.props.changeTab("Signup")}>Sign Up</button>
+        <button onClick={() => this.props.changeTab("Signin")}>Sign In</button>
 
      </div>   
     )}
-
+    }
 

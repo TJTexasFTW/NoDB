@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { Component } from "react";
 import Javascriptslots from './javascriptslots'
 import Slots from './slots'
 
-export default function Spin () {
+
+export default class Spin extends Component {
+
+    render() {
 
     return (
      <div>
@@ -23,9 +26,9 @@ export default function Spin () {
       <div className="spinButtons">
         <button>DELETE ACCOUNT</button>
         <button className = "spin">SPIN</button>
-        <button>SIGN OUT</button>
+        <button onClick={() => this.props.changeTab("Signout")}>SIGN OUT</button>
       </div>
      </div>   
     )}
 
-
+    }
