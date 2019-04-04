@@ -25,7 +25,7 @@
     "not op_mini all"
   ],
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": "index.js",
+  "main": "server/index.js",
   "devDependencies": {},
   "repository": {
     "type": "git",
@@ -38,6 +38,5 @@
     "url": "https://github.com/TJTexasFTW/NoDB/issues"
   },
   "homepage": "https://github.com/TJTexasFTW/NoDB#readme",
-  "main": "server/index.js",
   "proxy": "http://localhost:6060"
 }

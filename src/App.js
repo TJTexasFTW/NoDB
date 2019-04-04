@@ -42,7 +42,7 @@ class App extends Component {
 
  deleteUser(id) {
   // console.log(this.state.name, this.state.alias)
-  axios.delete('/api/users:id', id).
+  axios.delete('/api/users/:id', id).
     then (res => {this.setState({users: res.data})});
   this.changeTab("");
   // this.setState({curUserId: this.state.id});
@@ -65,7 +65,7 @@ class App extends Component {
       <article><Spin 
         changeTab = {this.changeTab} 
         user = {this.state.users[this.state.curUserId]}
-        deleteUser = {this.state.deleteUser}/></article>) :
+        delete = {this.deleteUser}/></article>) :
       ( <article><Welcome changeTab = {this.changeTab} /></article>)
       }   
       <Footer />

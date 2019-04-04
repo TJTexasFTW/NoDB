@@ -35,9 +35,11 @@ export default class Spin extends Component {
       <p className="spinCost">Each Spin: 10 credits</p>
       
       <div className="spinButtons">
-        <button onClick={() => this.props.deleteUser(this.props.user.id)}>DELETE ACCOUNT</button>
+        <button onClick={() => this.props.delete(this.props.user.id)}>DELETE ACCOUNT</button>
+        {/* <button onClick={() => this.props.addUser(this.state.name, this.state.alias)}>Start Playing</button> */}
         <button className = "spin">SPIN</button>
         <button onClick={() => this.props.changeTab("Signout")}>SIGN OUT</button>
+
       </div>
      </div>   
     )}
