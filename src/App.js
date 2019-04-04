@@ -22,6 +22,7 @@ class App extends Component {
     };
     this.changeTab = this.changeTab.bind(this);
     this.addUser = this.addUser.bind(this);
+    this.deleteUser = this.deleteUser.bind(this);
   }
 
   changeTab(tab) {
@@ -39,6 +40,16 @@ class App extends Component {
     console.log("The id is: ", this.state.id)
  }
 
+ deleteUser(id) {
+  // console.log(this.state.name, this.state.alias)
+  axios.delete('/api/users:id', id).
+    then (res => {this.setState({users: res.data})});
+  this.changeTab("");
+  // this.setState({curUserId: this.state.id});
+  // this.setState({id: this.state.id+1});
+  console.log("The id to delete is: ", this.state.id)
+}
+
   render() {
     console.log(this.state.curUserId)
     return (
@@ -51,7 +62,10 @@ class App extends Component {
       this.state.tab === "Signin" ? (
       <article><Signin changeTab = {this.changeTab} /></article>) :  
       this.state.tab === "Spin" ? (
-      <article><Spin changeTab = {this.changeTab} user = {this.state.users[this.state.curUserId]}/></article>) :
+      <article><Spin 
+        changeTab = {this.changeTab} 
+        user = {this.state.users[this.state.curUserId]}
+        deleteUser = {this.state.deleteUser}/></article>) :
       ( <article><Welcome changeTab = {this.changeTab} /></article>)
       }   
       <Footer />

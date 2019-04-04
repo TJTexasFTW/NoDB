@@ -12,6 +12,6 @@ app.use(express.json());        //allows use of req.body
 // app.get("/api/users", getUsers);
 app.post("/api/users", cont.create);
 // app.put("/api/users", putUsers);
-// app.delete("/api/users/:name", deleteUsers);
+app.delete("/api/users/:id", cont.deleteUser);
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
