@@ -15,8 +15,17 @@ module.exports = {
         users.splice(deleteID, 1);
         console.log("SPIN DELETE FUNCTION: ", users);
         res.status(200).send(users);
-
     },
+
+    update: (req, res) => {
+        const updateID = req.params.id;
+        console.log("Update function: ", req.body, req.params.id)
+        users[updateID].balance = req.body.balance;
+        // const messageIndex = messages.findIndex(message => message.id == deleteID);
+        console.log("UPDATE: ", users);
+        res.status(200).send(users);
+    },
+
 
     read: (req, res) => {
         res.status(200).send(users);

@@ -24,10 +24,14 @@ export default class Spin extends Component {
   }
 
 spinButton () {
+  let balance = this.props.user.balance;
 
-  this.setState({slot1Word: "Java"});
-  this.setState({slot2Word: "Scr"});
-  this.setState({slot3Word: "ipt"});
+  this.setState({curBalance: this.props.user.balance})
+  console.log("Spin Button Clicked. curBalance = ", this.state.curBalance)
+
+  // this.setState({slot1Word: "Java"});
+  // this.setState({slot2Word: "Scr"});
+  // this.setState({slot3Word: "ipt"});
 
   let slot1Spin = ((Math.floor((Math.random() * 3) + 1))-1);
   let slot2Spin = ((Math.floor((Math.random() * 3) + 1))-1);
@@ -36,11 +40,11 @@ spinButton () {
   var winnings = 0;
 
 
-  if (this.props.user.balance > 9) {
+  // if (this.curBalance > 9) {
     this.setState({slot1Word: this.state.jsWords[slot1Spin]});
     this.setState({slot2Word: this.state.jsWords[slot2Spin]});
     this.setState({slot3Word: this.state.jsWords[slot3Spin]});
-  }
+  // }
  
   if ((this.slot1Word === this.slot2Word) && 
       (this.slot2Word === this.slot3Word) && 
@@ -52,20 +56,27 @@ spinButton () {
         winnings = 100;
         // console.log("three devs: ", winnings, this.state.slot1Word, this.state.slot2Word, this.state.slot3Word)
         this.setState({curBalance: this.state.curBalance + winnings, winnings})
+        balance += winnings;
       } else if ((this.slot1Word === this.slot2Word) && 
       (this.slot1Word === this.slot3Word)) {
         winnings = 50;
         // console.log("Winnings 3 match no dev: ", winnings, this.state.slot1Word, this.state.slot2Word, this.state.slot3Word)
         this.setState({curBalance: this.state.curBalance + winnings, winnings})
+        balance += winnings;
+
       } else if ((this.slot1Word === this.slot2Word) || 
                 (this.slot1Word === this.slot3Word) ||
                 (this.slot2Word === this.slot3Word)) {
                   winnings = 10;
                   // console.log("two matches: ", winnings, this.state.slot1Word, this.state.slot2Word, this.state.slot3Word)
                   this.setState({curBalance: this.state.curBalance + winnings, winnings})
+                  balance += winnings;
+
       } else {
         winnings = 0;
     }
+
+    this.props.updateUser(this.props.user.id, balance);
 
     console.log("Winnings", winnings);
 
