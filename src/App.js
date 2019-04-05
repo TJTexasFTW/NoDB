@@ -50,6 +50,7 @@ class App extends Component {
   console.log("The id to delete is: ", this.state.id)
 }
 
+
   render() {
     console.log(this.state.curUserId)
     return (
