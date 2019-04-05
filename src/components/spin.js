@@ -14,7 +14,9 @@ export default class Spin extends Component {
       
       slot1Word: "",
       slot2Word: "",
-      slot3Word: ""
+      slot3Word: "",
+
+      winnings: 0
     };
 
     this.spinButton = this.spinButton.bind(this)
@@ -22,40 +24,47 @@ export default class Spin extends Component {
   }
 
 spinButton () {
+
+  this.setState({slot1Word: "Java"});
+  this.setState({slot2Word: "Scr"});
+  this.setState({slot3Word: "ipt"});
+
   let slot1Spin = ((Math.floor((Math.random() * 3) + 1))-1);
   let slot2Spin = ((Math.floor((Math.random() * 3) + 1))-1);
   let slot3Spin = ((Math.floor((Math.random() * 3) + 1))-1);
 
-  let winnings = 0;
+  var winnings = 0;
+
 
   if (this.props.user.balance > 9) {
     this.setState({slot1Word: this.state.jsWords[slot1Spin]});
     this.setState({slot2Word: this.state.jsWords[slot2Spin]});
     this.setState({slot3Word: this.state.jsWords[slot3Spin]});
   }
-  
+ 
   if ((this.slot1Word === this.slot2Word) && 
       (this.slot2Word === this.slot3Word) && 
       (this.state.slot3Word === 'dev') &&
       (this.state.slot2Word === 'dev') &&
       (this.state.slot1Word === 'dev')
+      
       ) {
-      console.log("three devs: ", winnings, this.state.slot1Word, this.state.slot2Word, this.state.slot3Word)
         winnings = 100;
-        this.setState({curBalance: this.state.curBalance + winnings})
+        // console.log("three devs: ", winnings, this.state.slot1Word, this.state.slot2Word, this.state.slot3Word)
+        this.setState({curBalance: this.state.curBalance + winnings, winnings})
       } else if ((this.slot1Word === this.slot2Word) && 
       (this.slot1Word === this.slot3Word)) {
         winnings = 50;
-        console.log("Winnings 3 match no dev: ", winnings, this.state.slot1Word, this.state.slot2Word, this.state.slot3Word)
-        this.setState({curBalance: this.state.curBalance + winnings})
-} else if ((this.slot1Word === this.slot2Word) || 
+        // console.log("Winnings 3 match no dev: ", winnings, this.state.slot1Word, this.state.slot2Word, this.state.slot3Word)
+        this.setState({curBalance: this.state.curBalance + winnings, winnings})
+      } else if ((this.slot1Word === this.slot2Word) || 
                 (this.slot1Word === this.slot3Word) ||
                 (this.slot2Word === this.slot3Word)) {
-                  console.log("two matches: ", winnings, this.state.slot1Word, this.state.slot2Word, this.state.slot3Word)
                   winnings = 10;
-                  this.setState({curBalance: this.state.curBalance + winnings})
-    } else {
-      winnings = 0;
+                  // console.log("two matches: ", winnings, this.state.slot1Word, this.state.slot2Word, this.state.slot3Word)
+                  this.setState({curBalance: this.state.curBalance + winnings, winnings})
+      } else {
+        winnings = 0;
     }
 
     console.log("Winnings", winnings);
@@ -74,7 +83,14 @@ spinButton () {
         <Slots slot1 = {this.state.slot1Word}
                slot2 = {this.state.slot2Word}
                slot3 = {this.state.slot3Word}/>
-        <h2>CREDITS WON: {this.winnings}</h2>
+
+        <article className="slot">
+            <div className="slotItems">{this.state.slot1Word}</div>
+            <div className="slotItems">{this.state.slot2Word}</div>
+            <div className="slotItems">{this.state.slot3Word}</div>
+        </article>
+
+        <h2>CREDITS WON: {this.state.winnings}</h2>
          <div className="winners">
          <p>2 Matching Items: 10 credits</p>
          <p>3 Matching Items: 50 credits</p>

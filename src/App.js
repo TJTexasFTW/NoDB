@@ -5,8 +5,9 @@ import Footer from './components/footer';
 import Welcome from './components/welcome';
 // import Slots from './components/slots'
 import Signup from './components/signup';
-import Signin from './components/signin';
+// import Signin from './components/signin';
 import Spin from './components/spin';
+import Users from './components/users';
 // import Javascriptslots from './components/javascriptslots'
 import axios from 'axios';
 
@@ -23,6 +24,7 @@ class App extends Component {
     this.changeTab = this.changeTab.bind(this);
     this.addUser = this.addUser.bind(this);
     this.deleteUser = this.deleteUser.bind(this);
+    this.getUsers = this.getUsers.bind(this);
   }
 
   changeTab(tab) {
@@ -50,6 +52,14 @@ class App extends Component {
   console.log("The id to delete is: ", this.state.id)
 }
 
+getUsers() {
+  // console.log(this.state.name, this.state.alias)
+  axios.get('/api/users').
+    then (res => {this.setState({users: res.data})});
+  this.changeTab("Users");
+  // this.setState({curUserId: this.state.id});
+  // this.setState({id: this.state.id+1});
+}
 
   render() {
     console.log(this.state.curUserId)
@@ -57,17 +67,24 @@ class App extends Component {
       <div className="App">
          {/* <article><Signup changeTab = {this.changeTab} addUser = {this.addUser}/></article> */}
       {this.state.tab === "Welcome" ? (
-      <article>< Welcome changeTab = {this.changeTab} /></article>) :
+      <article>< Welcome 
+        changeTab = {this.changeTab}
+        getUsers = {this.getUsers} /></article>) :
       this.state.tab === "Signup" ? (
       <article><Signup changeTab = {this.changeTab} addUser = {this.addUser}/></article>) :
-      this.state.tab === "Signin" ? (
-      <article><Signin changeTab = {this.changeTab} /></article>) :  
+      this.state.tab === "Users" ? (
+      <article><Users 
+        changeTab = {this.changeTab} 
+        users = {this.state.users}/></article>
+        ) :  
       this.state.tab === "Spin" ? (
       <article><Spin 
         changeTab = {this.changeTab} 
         user = {this.state.users[this.state.curUserId]}
         delete = {this.deleteUser}/></article>) :
-      ( <article><Welcome changeTab = {this.changeTab} /></article>)
+      ( <article><Welcome 
+        getUsers = {this.getUsers}
+        changeTab = {this.changeTab} /></article>)
       }   
       <Footer />
       </div>

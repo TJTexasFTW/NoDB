@@ -9,7 +9,7 @@ app.use(express.json());        //allows use of req.body
     // response.status(200).json(users) 
 // });
 
-// app.get("/api/users", getUsers);
+app.get("/api/users", cont.read);
 app.post("/api/users", cont.create);
 // app.put("/api/users", putUsers);
 app.delete("/api/users/:id", cont.delete);

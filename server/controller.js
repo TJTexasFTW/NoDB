@@ -9,18 +9,18 @@ module.exports = {
          res.status(200).send(users);
        },
  
-       delete: (req, res) => {
+    delete: (req, res) => {
         const deleteID = req.params.id;
         // const messageIndex = messages.findIndex(message => message.id == deleteID);
         users.splice(deleteID, 1);
         console.log("SPIN DELETE FUNCTION: ", users);
         res.status(200).send(users);
 
-    }
+    },
 
-    //  read: (req, res) => {
-    //      res.status(200).send(messages);
-    //  },
+    read: (req, res) => {
+        res.status(200).send(users);
+     }
    
     
     //  update: (req, res) => {

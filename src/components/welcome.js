@@ -6,7 +6,7 @@ import Slots from './slots'
 export default class Welcome extends Component {
 
    render() {
-
+        console.log("PROPS: ", this.props)
     return (
      <div>
          {this.props.tab !== Welcome ? (
@@ -16,7 +16,8 @@ export default class Welcome extends Component {
          <Javascriptslots />
          <Slots />
          <button onClick={() => this.props.changeTab("Signup")}>Sign Up</button>
-         <button onClick={() => this.props.changeTab("Signin")}>Sign In</button>
+         <button onClick={() => this.props.getUsers()}>Users Listing</button>
+         {/* <button onClick={() => this.props.delete(this.props.user.id)}>DELETE ACCOUNT</button> */}
      </div>   
     )}
     }
