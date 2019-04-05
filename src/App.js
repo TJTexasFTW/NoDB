@@ -82,7 +82,8 @@ getUsers() {
       {this.state.tab === "Welcome" ? (
       <article>< Welcome 
         changeTab = {this.changeTab}
-        getUsers = {this.getUsers} /></article>) :
+        getUsers = {this.getUsers}
+        users = {this.state.users} /></article>) :
       this.state.tab === "Signup" ? (
       <article><Signup changeTab = {this.changeTab} addUser = {this.addUser}/></article>) :
       this.state.tab === "Users" ? (
@@ -98,7 +99,8 @@ getUsers() {
         delete = {this.deleteUser}/></article>) :
       ( <article><Welcome 
         getUsers = {this.getUsers}
-        changeTab = {this.changeTab} /></article>)
+        changeTab = {this.changeTab}
+        users = {this.state.users} /></article>)
       }   
       <Footer />
       </div>

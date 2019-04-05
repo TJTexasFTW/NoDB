@@ -87,12 +87,12 @@ spinButton () {
      <div>
         <h2>LET'S PLAY</h2>
         {this.props.user ? (
-        <p>Your user ID is: {this.props.user.id}</p>
+        <p className="userid" > Your user ID is: {this.props.user.id}</p>
         ) : null}
         <Javascriptslots />
-        <Slots slot1 = {this.state.slot1Word}
+        {/* <Slots slot1 = {this.state.slot1Word}
                slot2 = {this.state.slot2Word}
-               slot3 = {this.state.slot3Word}/>
+               slot3 = {this.state.slot3Word}/> */}
 
         <article className="slot">
             <div className="slotItems">{this.state.slot1Word}</div>
@@ -100,9 +100,9 @@ spinButton () {
             <div className="slotItems">{this.state.slot3Word}</div>
         </article>
 
-        <h2>CREDITS WON: {this.state.winnings}</h2>
+        <h2 className="scroll-right">CREDITS WON: {this.state.winnings}</h2>
          <div className="winners">
-         <p>3 Bonus Items: 100 credits</p>
+         <p>3 "devs": 100 credits</p>
          <p>3 Matching Items: 50 credits</p>
          <p>2 Matching Items: 10 credits</p>
          </div>
@@ -116,7 +116,6 @@ spinButton () {
         {/* <button onClick={() => this.props.addUser(this.state.name, this.state.alias)}>Start Playing</button> */}
         <button onClick={this.spinButton} className = "spin">SPIN</button>
         <button onClick={() => this.props.changeTab("Signout")}>SIGN OUT</button>
-
       </div>
      </div>   
     )}

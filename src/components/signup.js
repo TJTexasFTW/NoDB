@@ -28,21 +28,18 @@ export default class Signup extends Component {
       console.log(this.state.users)
 
     return (
-     <div>
+     <div className="whatever">
         <h2>NEW USER SIGN-UP</h2>
         <Javascriptslots />
-           <div>
+         <div className = "signup">
               <label>Name:</label>
               <input onChange={ (e) => this.handleAddName(e.target.value) }/>
          </div>
-         <div>
+         <div className = "signup">
                <label>Alias:</label>
                <input onChange={ (e) => this.handleAddAlias(e.target.value) }/>
          </div>
-        {/* <div>Starting Balance: 500 Credits</div> */}
-
-        {/* <button onClick={() => this.props.changeTab("Spin")}>Start Playing</button> */}
-        <button onClick={() => this.props.addUser(this.state.name, this.state.alias)}>Start Playing</button>
+        <button className = "signupButton" onClick={() => this.props.addUser(this.state.name, this.state.alias)}>Start Playing</button>
 
      </div>   
     )}
