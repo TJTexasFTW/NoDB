@@ -10,7 +10,7 @@ export default class Spin extends Component {
     this.state = {
       curBalance: 0,
       
-      jsWords: ["let", "dev", "put"],
+      jsWords: ["dev", "let", "put"],
       
       slot1Word: "",
       slot2Word: "",
@@ -24,14 +24,10 @@ export default class Spin extends Component {
   }
 
 spinButton () {
-  let balance = this.props.user.balance;
+  let balance = this.props.user.balance - 10;
 
-  this.setState({curBalance: this.props.user.balance})
+  this.setState({curBalance: balance})
   console.log("Spin Button Clicked. curBalance = ", this.state.curBalance)
-
-  // this.setState({slot1Word: "Java"});
-  // this.setState({slot2Word: "Scr"});
-  // this.setState({slot3Word: "ipt"});
 
   let slot1Spin = ((Math.floor((Math.random() * 3) + 1))-1);
   let slot2Spin = ((Math.floor((Math.random() * 3) + 1))-1);
@@ -39,34 +35,36 @@ spinButton () {
 
   var winnings = 0;
 
-
+  console.log("Index number assignments: ", slot1Spin, slot2Spin, slot3Spin)
   // if (this.curBalance > 9) {
+  //Update the state items to the randomly selected words
     this.setState({slot1Word: this.state.jsWords[slot1Spin]});
     this.setState({slot2Word: this.state.jsWords[slot2Spin]});
     this.setState({slot3Word: this.state.jsWords[slot3Spin]});
   // }
- 
-  if ((this.slot1Word === this.slot2Word) && 
-      (this.slot2Word === this.slot3Word) && 
-      (this.state.slot3Word === 'dev') &&
-      (this.state.slot2Word === 'dev') &&
-      (this.state.slot1Word === 'dev')
+  console.log("Before if statements: ", slot1Spin, slot2Spin, slot3Spin)
+  
+  if ((slot1Spin === slot2Spin && 
+      slot2Spin === slot3Spin && 
+      slot1Spin == 0 &&
+      slot2Spin == 0 &&
+      slot3Spin == 0)
       
       ) {
         winnings = 100;
         // console.log("three devs: ", winnings, this.state.slot1Word, this.state.slot2Word, this.state.slot3Word)
         this.setState({curBalance: this.state.curBalance + winnings, winnings})
         balance += winnings;
-      } else if ((this.slot1Word === this.slot2Word) && 
-      (this.slot1Word === this.slot3Word)) {
+      } else if ((slot1Spin === slot2Spin) && 
+      (slot1Spin === slot3Spin)) {
         winnings = 50;
         // console.log("Winnings 3 match no dev: ", winnings, this.state.slot1Word, this.state.slot2Word, this.state.slot3Word)
         this.setState({curBalance: this.state.curBalance + winnings, winnings})
         balance += winnings;
 
-      } else if ((this.slot1Word === this.slot2Word) || 
-                (this.slot1Word === this.slot3Word) ||
-                (this.slot2Word === this.slot3Word)) {
+      } else if ((slot1Spin === slot2Spin) || 
+                (slot1Spin === slot3Spin) ||
+                (slot2Spin === slot3Spin)) {
                   winnings = 10;
                   // console.log("two matches: ", winnings, this.state.slot1Word, this.state.slot2Word, this.state.slot3Word)
                   this.setState({curBalance: this.state.curBalance + winnings, winnings})
@@ -74,11 +72,12 @@ spinButton () {
 
       } else {
         winnings = 0;
+        this.setState({curBalance: this.state.curBalance + winnings, winnings})
     }
 
     this.props.updateUser(this.props.user.id, balance);
 
-    console.log("Winnings", winnings);
+    console.log("Winnings end ", winnings);
 
 }
 
@@ -103,9 +102,9 @@ spinButton () {
 
         <h2>CREDITS WON: {this.state.winnings}</h2>
          <div className="winners">
-         <p>2 Matching Items: 10 credits</p>
-         <p>3 Matching Items: 50 credits</p>
          <p>3 Bonus Items: 100 credits</p>
+         <p>3 Matching Items: 50 credits</p>
+         <p>2 Matching Items: 10 credits</p>
          </div>
          {this.props.user ? (
          <h4>CURRENT CREDITS: {this.props.user.balance}</h4>) : <div>Nothing Yet</div>}  
