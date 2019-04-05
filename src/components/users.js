@@ -9,7 +9,7 @@ export default class Users extends Component {
 
     render() {
         console.log("USERS COMP: ", this.props.users)
-        const userList = this.props.users.map(val => <li key={val.id}>{val.name}</li>);
+        const userList = this.props.users.map(val => <li key={val.id}><p>ID: {val.id}</p><p>NAME: {val.name}</p><p>ALIAS: {val.alias}</p><p>BALANCE: {val.balance}</p></li>);
 
     return (
      <div>
