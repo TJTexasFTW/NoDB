@@ -23,7 +23,6 @@ export default class Signup extends Component {
       console.log("ALIAS: " + this.state.alias);
    }
 
-
    render() {
       console.log(this.state.users)
 

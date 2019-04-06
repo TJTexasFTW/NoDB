@@ -53,7 +53,6 @@ class App extends Component {
 
 updateUser(id, balance) {
   console.log(id, balance)
-  // debugger;
   axios.put('/api/users/' + id, {
     balance: balance
   }).

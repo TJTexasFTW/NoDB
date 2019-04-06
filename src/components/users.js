@@ -12,26 +12,20 @@ export default class Users extends Component {
         const userList = this.props.users.map(val => <li key={val.id}><p>ID: {val.id}</p><p>NAME: {val.name}</p><p>ALIAS: {val.alias}</p><p>BALANCE: {val.balance}</p></li>);
 
     return (
-     <div>
+    <div>
         <h2>USER LISTING</h2>
         <Javascriptslots />
-        <div>
-           <ul>
-               {userList}
-           </ul>
-           
-           
-            {/* <ul>
-            {this.props.users.map((user, index) => (
-                id={this.props.users.id}  
-                name={this.props.users.name}
-                alias={this.props.users.alias}
-                balance={this.props.users.balance} */}
-            {/* </ul> */} 
+        <div className="moveOver">
+            <ul><ul><ul>
+                <ul className="userlisting">
+                    {userList}
+                </ul>
+            </ul></ul></ul>
         </div>
-         <button onClick={() => this.props.changeTab("Spin")}>Start Playing</button>
-
-     </div>   
+        <div  >
+            <button className="userStartButton" onClick={() => this.props.changeTab("Spin")}>Start Playing</button>
+        </div>
+    </div>   
     )}
     }
 

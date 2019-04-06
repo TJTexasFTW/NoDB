@@ -25,8 +25,9 @@ export default class Spin extends Component {
 
 spinButton () {
   let balance = this.props.user.balance - 10;
+  this.setState({winnings: 0});
 
-  this.setState({curBalance: balance})
+  this.setState({curBalance: balance});
   console.log("Spin Button Clicked. curBalance = ", this.state.curBalance)
 
   let slot1Spin = ((Math.floor((Math.random() * 3) + 1))-1);
@@ -86,9 +87,6 @@ spinButton () {
     return (
      <div>
         <h2>LET'S PLAY</h2>
-        {this.props.user ? (
-        <p className="userid" > Your user ID is: {this.props.user.id}</p>
-        ) : null}
         <Javascriptslots />
         {/* <Slots slot1 = {this.state.slot1Word}
                slot2 = {this.state.slot2Word}
@@ -100,23 +98,35 @@ spinButton () {
             <div className="slotItems">{this.state.slot3Word}</div>
         </article>
 
-        <h2 className="scroll-right">CREDITS WON: {this.state.winnings}</h2>
-         <div className="winners">
-         <p>3 "devs": 100 credits</p>
-         <p>3 Matching Items: 50 credits</p>
-         <p>2 Matching Items: 10 credits</p>
-         </div>
-         {this.props.user ? (
-         <h4>CURRENT CREDITS: {this.props.user.balance}</h4>) : <div>Nothing Yet</div>}  
-         {/* {this.props.balance[this.props.curId]} */}
-      <p className="spinCost">Each Spin: 10 credits</p>
-      
+        <div className="winners">
+        <p>3 "devs": 100 credits</p>
+        <p>3 Matching Items: 50 credits</p>
+        <p>2 Matching Items: 10 credits</p>
+        </div>
+
+        {this.state.winnings > 50 ? (
+              <h2 className="winnerBIG">CREDITS WON: {this.state.winnings}</h2>) :
+        this.state.winnings > 0 ? (
+             <h2 className="winnerGREEN">CREDITS WON: {this.state.winnings}</h2>) :    
+              (<h2 className="winnerRED">CREDITS WON: {this.state.winnings}</h2>)}
+
       <div className="spinButtons">
         <button onClick={() => this.props.delete(this.props.user.id)}>DELETE ACCOUNT</button>
         {/* <button onClick={() => this.props.addUser(this.state.name, this.state.alias)}>Start Playing</button> */}
         <button onClick={this.spinButton} className = "spin">SPIN</button>
         <button onClick={() => this.props.changeTab("Signout")}>SIGN OUT</button>
       </div>
+      <p className="spinCost">Each Spin: 10 credits</p>
+      <div className="curbal">
+        {this.props.user ? (
+        <h4>CURRENT CREDITS: {this.props.user.balance}</h4>) : <div>Nothing Yet</div>}  
+         {/* {this.props.balance[this.props.curId]} */}
+         {this.props.user ? (
+        <p className="userid" > Your user ID is: {this.props.user.id}</p>
+        ) : null}
+      
+        </div>
+
      </div>   
     )}
 
