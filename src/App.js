@@ -3,12 +3,9 @@ import './App.css';
 import './reset.css';
 import Footer from './components/footer';
 import Welcome from './components/welcome';
-// import Slots from './components/slots'
 import Signup from './components/signup';
-// import Signin from './components/signin';
 import Spin from './components/spin';
 import Users from './components/users';
-// import Javascriptslots from './components/javascriptslots'
 import axios from 'axios';
 
 class App extends Component {

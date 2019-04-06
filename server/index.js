@@ -5,10 +5,6 @@ const cont = require("./controller")
 
 app.use(express.json());        //allows use of req.body
 
-// app.get("/api/users",/", (request, response) => {
-    // response.status(200).json(users) 
-// });
-
 app.get("/api/users", cont.read);
 app.post("/api/users", cont.create);
 app.put("/api/users/:id", cont.update);
